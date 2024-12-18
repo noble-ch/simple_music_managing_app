@@ -1,5 +1,5 @@
-const express = require('express');
-const { createSong, getSongs, updateSong, deleteSong, getStatistics } = require('../controllers/songController');
+import express from "express";
+import { createSong, getSongs, updateSong, deleteSong, getStatistics } from '../controllers/songController.js';
 const router = express.Router();
 
 router.post('/songs', createSong);
@@ -8,4 +8,4 @@ router.put('/songs/:id', updateSong);
 router.delete('/songs/:id', deleteSong);
 router.get('/statistics', getStatistics);
 
-module.exports = router;
+export default router;

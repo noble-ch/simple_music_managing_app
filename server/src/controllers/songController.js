@@ -1,7 +1,7 @@
-const Song = require('../models/song');
+import Song from '../models/song.js';
 
 // Create a new song
-exports.createSong = async (req, res) => {
+export const createSong = async (req, res) => {
   try {
     const song = new Song(req.body);
     await song.save();
@@ -10,9 +10,8 @@ exports.createSong = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
 // Get all songs
-exports.getSongs = async (req, res) => {
+export const getSongs = async (req, res) => {
   try {
     const songs = await Song.find();
     res.json(songs);
@@ -22,7 +21,7 @@ exports.getSongs = async (req, res) => {
 };
 
 // Update a song
-exports.updateSong = async (req, res) => {
+export const updateSong = async (req, res) => {
   try {
     const song = await Song.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.json(song);
@@ -32,7 +31,7 @@ exports.updateSong = async (req, res) => {
 };
 
 // Delete a song
-exports.deleteSong = async (req, res) => {
+export const deleteSong = async (req, res) => {
   try {
     await Song.findByIdAndDelete(req.params.id);
     res.status(204).send();
@@ -42,7 +41,7 @@ exports.deleteSong = async (req, res) => {
 };
 
 // Get statistics
-exports.getStatistics = async (req, res) => {
+export const getStatistics = async (req, res) => {
   try {
     const totalSongs = await Song.countDocuments();
     const genres = await Song.aggregate([
